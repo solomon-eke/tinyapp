@@ -33,8 +33,8 @@ app.get("/urls", (request, response) => {
 app.get("/urls/:shortURL", (request, response) => {
   const templateVars = {
     shortURL: request.params.shortURL,
-    longURL: request.params.longURL,
   };
+  response.render("urls_shows", templateVars);
 });
 
 app.listen(PORT, () => {
