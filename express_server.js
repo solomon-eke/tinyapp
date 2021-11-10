@@ -1,6 +1,8 @@
-const { response } = require("express");
+const { response, request } = require("express");
 const express = require("express");
+const bodyParser = require("body-parser");
 const app = express();
+app.use(bodyParser.urlencoded({ extended: true }));
 const PORT = 8080; // default port
 app.set("view engine", "ejs");
 const urlDatabase = {
@@ -30,13 +32,20 @@ app.get("/urls", (request, response) => {
   const templateVars = { urls: urlDatabase };
   response.render("urls_index", templateVars);
 });
+app.get("/urls/new", (request, response) => {
+  response.render("urls_new");
+});
 app.get("/urls/:shortURL", (request, response) => {
   const templateVars = {
     shortURL: request.params.shortURL,
+    longURL: request.params.longURL,
   };
   response.render("urls_shows", templateVars);
 });
-
+app.get("/u/:shortURL", (req, res) => {
+  // const longURL = ...
+  res.redirect(longURL);
+});
 app.listen(PORT, () => {
   console.log(`Example app listening on port ${PORT}!`);
 });
