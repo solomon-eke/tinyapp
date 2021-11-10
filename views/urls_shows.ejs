@@ -20,6 +20,13 @@
         <p class="card-text">
           Short URL: <a href="/u/<%= shortURL %>"><%= shortURL %></a>
         </p>
+        <form method='POST' action='/urls/<%= %>'>
+
+    <input type='text' name='quote_content' value='<%= %>' />
+
+    <input type='submit' value='Update url' />
+
+  <form>
       </div>
       <div class="card-footer text-muted"></div>
     </div>

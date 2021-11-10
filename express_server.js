@@ -46,6 +46,27 @@ app.get("/u/:shortURL", (req, res) => {
   // const longURL = ...
   res.redirect(longURL);
 });
+app.post("/urls/:shortURL/delete", (req, res) => {
+  // extract the id
+  const shortURL = req.params.shortURL;
+  const longURL = req.params.longURL;
+
+  // delete this url from the db
+  delete urlDatabase[shortURL];
+  delete urlDatabase[longURL];
+  res.redirect("/urls");
+});
+
+app.get("/urls/:id", (req, res) => {
+  // extract the quote id from the url
+  const longURL = req.params.longURL;
+  const longUrlObj = urlDatabase[longURL];
+  const content = req.body.quote_content;
+
+  // redirect
+
+  res.redirect("/urls");
+});
 app.listen(PORT, () => {
   console.log(`Example app listening on port ${PORT}!`);
 });
